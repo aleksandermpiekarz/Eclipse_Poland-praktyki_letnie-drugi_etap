@@ -21,7 +21,15 @@ class StringCalculator {
         String delimiter = Optional.ofNullable(StringUtils
                 .substringBetween(numbers, "//", "\n"))
                 .orElse(",|\\n");
-        numbers = StringUtils.remove(numbers,("//" + delimiter)+"\n");
+
+        if(delimiter.contains("[")&&delimiter.contains("]")) {
+            delimiter = delimiter.substring(1,delimiter.length()-1);
+            numbers = StringUtils.remove(numbers,"//[" + delimiter+"]\n");
+
+        }else {
+            numbers = StringUtils.remove(numbers,"//" + delimiter+"\n");
+        }
+
 
         if(numbers.isEmpty()){ // if string is empty, method returns 0;
             return 0;

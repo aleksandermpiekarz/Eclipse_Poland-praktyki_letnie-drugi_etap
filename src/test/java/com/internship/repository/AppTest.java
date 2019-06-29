@@ -110,5 +110,16 @@ public class AppTest
         assertEquals(test.add(numbers),result);
     }
 
+    @Test
+    public void test_delimitersOfAnyLength()
+    {
+        // given
+        StringCalculator test = new StringCalculator();
+        String numbers = "//[hai]\n1hai2hai3";
+        // when
+        int result = 6;
+        //then
+        assertEquals(test.add(numbers),result);
+    }
 }
 
