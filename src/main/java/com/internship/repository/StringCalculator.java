@@ -19,7 +19,8 @@ class StringCalculator {
 
             // Arrays.asList() is an array with numbers separated by ",", stream is used to
             // convert string array into integer list.
-            sepNumbers = Arrays.asList(numbers.split(","))
+            System.out.println(Arrays.asList(numbers.split(",|\\n")));
+            sepNumbers = Arrays.asList(numbers.split(",|\\n"))
                     .stream()
                     .map(s -> Integer.parseInt(s))
                     .collect(Collectors.toList());

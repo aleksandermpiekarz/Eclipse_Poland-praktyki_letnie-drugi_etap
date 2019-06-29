@@ -60,4 +60,16 @@ public class AppTest
         //then
         assertEquals(test.add(numbers),result);
     }
+
+    @Test
+    public void test_newLineDelimiter_multipleNumberString()
+    {
+        // given
+        StringCalculator test = new StringCalculator();
+        String numbers = "2\n-3,4,43,-23\n41";
+        // when
+        int result = 2+(-3)+4+43+(-23)+41;
+        //then
+        assertEquals(test.add(numbers),result);
+    }
 }
