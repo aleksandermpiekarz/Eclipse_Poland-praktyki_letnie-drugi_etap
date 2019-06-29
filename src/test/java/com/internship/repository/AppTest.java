@@ -61,6 +61,7 @@ public class AppTest
         assertEquals(test.add(numbers),result);
     }
 
+
     @Test
     public void test_newLineDelimiter_multipleNumberString()
     {
@@ -72,4 +73,17 @@ public class AppTest
         //then
         assertEquals(test.add(numbers),result);
     }
+
+    @Test
+    public void test_userDefinedDelimiter_multipleNumberString()
+    {
+        // given
+        StringCalculator test = new StringCalculator();
+        String numbers = "//hi1\n2hi1-3hi143hi1-23";
+        // when
+        int result = 2+(-3)+43+(-23);
+        //then
+        assertEquals(test.add(numbers),result);
+    }
 }
+
