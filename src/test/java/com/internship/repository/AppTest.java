@@ -42,9 +42,9 @@ public class AppTest
     {
         // given
         StringCalculator test = new StringCalculator();
-        String numbers = "2,-3";
+        String numbers = "2,3";
         // when
-        int result = 2+(-3);
+        int result = 2+(3);
         //then
         assertEquals(test.add(numbers),result);
     }
@@ -54,9 +54,9 @@ public class AppTest
     {
         // given
         StringCalculator test = new StringCalculator();
-        String numbers = "2,-3,4,43,-23,41";
+        String numbers = "2,3,4,43,23,41";
         // when
-        int result = 2+(-3)+4+43+(-23)+41;
+        int result = 2+(3)+4+43+(23)+41;
         //then
         assertEquals(test.add(numbers),result);
     }
@@ -67,9 +67,9 @@ public class AppTest
     {
         // given
         StringCalculator test = new StringCalculator();
-        String numbers = "2\n-3,4,43,-23\n41";
+        String numbers = "2\n3,4,43,23\n41";
         // when
-        int result = 2+(-3)+4+43+(-23)+41;
+        int result = 2+(3)+4+43+(23)+41;
         //then
         assertEquals(test.add(numbers),result);
     }
@@ -79,11 +79,24 @@ public class AppTest
     {
         // given
         StringCalculator test = new StringCalculator();
-        String numbers = "//hi1\n2hi1-3hi143hi1-23";
+        String numbers = "//hello1\n2hello13hello143hello123";
         // when
-        int result = 2+(-3)+43+(-23);
+        int result = 2+(3)+43+(23);
         //then
         assertEquals(test.add(numbers),result);
     }
+
+    @Test
+    public void test_negativeNumbersException_userDefinedDelimiter_multipleNumberString()
+    {
+        // given
+        StringCalculator test = new StringCalculator();
+        String numbers = "//hello1\n2hello1-3hello1-43hello1-23";
+        // when
+        int result = -1;
+        //then
+        assertEquals(test.add(numbers),result);
+    }
+
 }
 

@@ -12,9 +12,11 @@ import java.util.stream.Collectors;
 
 class StringCalculator {
 
-    public int add(String numbers){
+    public int add(String numbers) {
         List<Integer> sepNumbers ;
+        List<Integer> errorList;
         int sum;
+
 
         String delimiter = Optional.ofNullable(StringUtils
                 .substringBetween(numbers, "//", "\n"))
@@ -33,6 +35,16 @@ class StringCalculator {
                     .stream()
                     .map(s -> Integer.parseInt(s))
                     .collect(Collectors.toList());
+            errorList = sepNumbers.stream().filter(i -> i < 0).collect(Collectors.toList());
+
+            try {
+                if (!errorList.isEmpty()) {
+                    throw new IllegalArgumentException();
+                }
+            }catch (IllegalArgumentException e){
+                System.out.println("negatives not allowed " + errorList.toString());
+                return -1;
+            }
 
             // Here again stream is used to calculate sum of all elements of the list
             sum = sepNumbers
@@ -40,9 +52,19 @@ class StringCalculator {
                     .sum();
             return sum;
         }else {  // if string is not empty and does not contain any separator, it means that there is only one number
-            return Integer.valueOf(numbers);
+            Integer retValue = Integer.valueOf(numbers);
+            try {
+                if (retValue < 0) {
+                    throw new IllegalArgumentException();
+                }
+            }catch (IllegalArgumentException e){
+                System.out.println("negatives not allowed " + retValue);
+                return -1;
+            }
+            return retValue;
         }
-
-
     }
+
+
+
 }
