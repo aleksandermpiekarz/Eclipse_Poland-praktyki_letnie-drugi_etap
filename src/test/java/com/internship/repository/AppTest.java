@@ -98,5 +98,17 @@ public class AppTest
         assertEquals(test.add(numbers),result);
     }
 
+    @Test
+    public void test_ignoreMoreThanThousand()
+    {
+        // given
+        StringCalculator test = new StringCalculator();
+        String numbers = "//;\n2;1000;5;2333;1001";
+        // when
+        int result = 2+1000+5;
+        //then
+        assertEquals(test.add(numbers),result);
+    }
+
 }
 

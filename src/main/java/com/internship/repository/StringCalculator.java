@@ -48,7 +48,7 @@ class StringCalculator {
 
             // Here again stream is used to calculate sum of all elements of the list
             sum = sepNumbers
-                    .stream().mapToInt(Integer::intValue)
+                    .stream().mapToInt(Integer::intValue).filter(i -> i <=1000)
                     .sum();
             return sum;
         }else {  // if string is not empty and does not contain any separator, it means that there is only one number
@@ -60,6 +60,10 @@ class StringCalculator {
             }catch (IllegalArgumentException e){
                 System.out.println("negatives not allowed " + retValue);
                 return -1;
+            }
+
+            if(retValue > 1000) {
+                return 0;
             }
             return retValue;
         }
