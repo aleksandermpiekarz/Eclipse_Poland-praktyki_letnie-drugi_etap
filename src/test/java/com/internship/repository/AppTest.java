@@ -134,5 +134,16 @@ public class AppTest
         assertEquals(result,test.add(numbers));
     }
 
+    @Test
+    public void test_finalMultipleDelimitersOfAnyLength()
+    {
+        // given
+        StringCalculator test = new StringCalculator();
+        String numbers = "//[feng][shui][%][@@]\n1feng2feng3shui32%3@@7%5@@8";
+        // when
+        int result = 1+2+3+32+3+7+5+8;
+        //then
+        assertEquals(result,test.add(numbers));
+    }
 }
 
