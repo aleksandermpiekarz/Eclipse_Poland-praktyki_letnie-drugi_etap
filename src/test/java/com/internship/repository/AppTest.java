@@ -22,7 +22,7 @@ public class AppTest
         // when
         int result = 0;
         //then
-        assertEquals(test.add(numbers),result);
+        assertEquals(result,test.add(numbers));
     }
 
     @Test
@@ -34,7 +34,7 @@ public class AppTest
         // when
         int result = 2;
         //then
-        assertEquals(test.add(numbers),result);
+        assertEquals(result,test.add(numbers));
     }
 
     @Test
@@ -46,7 +46,7 @@ public class AppTest
         // when
         int result = 2+(3);
         //then
-        assertEquals(test.add(numbers),result);
+        assertEquals(result,test.add(numbers));
     }
 
     @Test
@@ -58,7 +58,7 @@ public class AppTest
         // when
         int result = 2+(3)+4+43+(23)+41;
         //then
-        assertEquals(test.add(numbers),result);
+        assertEquals(result,test.add(numbers));
     }
 
 
@@ -71,7 +71,7 @@ public class AppTest
         // when
         int result = 2+(3)+4+43+(23)+41;
         //then
-        assertEquals(test.add(numbers),result);
+        assertEquals(result,test.add(numbers));
     }
 
     @Test
@@ -83,7 +83,7 @@ public class AppTest
         // when
         int result = 2+(3)+43+(23);
         //then
-        assertEquals(test.add(numbers),result);
+        assertEquals(result,test.add(numbers));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class AppTest
         // when
         int result = -1;
         //then
-        assertEquals(test.add(numbers),result);
+        assertEquals(result,test.add(numbers));
     }
 
     @Test
@@ -107,7 +107,7 @@ public class AppTest
         // when
         int result = 2+1000+5;
         //then
-        assertEquals(test.add(numbers),result);
+        assertEquals(result,test.add(numbers));
     }
 
     @Test
@@ -119,7 +119,20 @@ public class AppTest
         // when
         int result = 6;
         //then
-        assertEquals(test.add(numbers),result);
+        assertEquals(result,test.add(numbers));
     }
+
+    @Test
+    public void test_multipleDelimitersOfAnyLength()
+    {
+        // given
+        StringCalculator test = new StringCalculator();
+        String numbers = "//[feng][shui]\n1feng2feng3shui32";
+        // when
+        int result = 1+2+3+32;
+        //then
+        assertEquals(result,test.add(numbers));
+    }
+
 }
 
