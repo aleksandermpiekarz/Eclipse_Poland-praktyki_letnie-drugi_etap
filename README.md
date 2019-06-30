@@ -9,4 +9,4 @@ if we do not add such a line, the delimiter will default to "," or "\ n" (task 3
 
 Going through the whole task is similar to the logic contained in the TDD, piece by piece tests done due to 
 the content of the subsequent tasks (failing tests at the beggining), then added code just enough to pass tests,
-then code changed for better without changing existing behaviour ( refactoring, wrining comments etc ).
+then code changed for better without changing existing behaviour ( refactoring, writing comments etc ).
