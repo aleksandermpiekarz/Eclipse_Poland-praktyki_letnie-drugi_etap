@@ -1,5 +1,5 @@
 # Eclipse_Poland-praktyki_letnie-drugi_etap
-String Calculator, a task prepared as part of the recruitment for an internship in eclipse.
+String Calculator, a task prepared as part of the recruitment for an internship in Eclipse Poland.
 
 Each task was completed with a commit. 
 Final corrections and additional comments can be found after the last commit.
