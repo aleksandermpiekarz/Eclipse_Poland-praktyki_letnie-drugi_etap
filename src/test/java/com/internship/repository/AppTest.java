@@ -99,6 +99,18 @@ public class AppTest
     }
 
     @Test
+    public void test_negativeNumbersException_oneNumberString()
+    {
+        // given
+        StringCalculator test = new StringCalculator();
+        String numbers = "-10";
+        // when
+        int result = -1;
+        //then
+        assertEquals(result,test.add(numbers));
+    }
+
+    @Test
     public void test_ignoreMoreThanThousand()
     {
         // given
@@ -139,7 +151,7 @@ public class AppTest
     {
         // given
         StringCalculator test = new StringCalculator();
-        String numbers = "//[feng][shui][%][@@]\n1feng2feng3shui32%3@@7%5@@8";
+        String numbers = "//[feng][shui][%][@@]\n1feng2feng3shui32%3@@7%5@@8shui1005";
         // when
         int result = 1+2+3+32+3+7+5+8;
         //then

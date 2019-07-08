@@ -2,6 +2,8 @@ package com.internship.repository;
 
 
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +25,7 @@ class StringCalculator {
                 .orElse(",|\\n");
 
         // getting rid of the first line ( if exist )
-        numbers = StringUtils.remove(numbers,"//" + delimiter+"\n");
+        numbers = StringUtils.remove(numbers,"//" + delimiter + "\n");
 
         // app method jumps into this method if first line is in the form //[d1][d2]\n
         // then were simply using substringsBetween instead of substringBetween ( plural is the difference ) to
@@ -34,17 +36,16 @@ class StringCalculator {
 
             delimiter = this.toScan(delimiters); // toScan is called to get proper form of delimiters, explained below
                                                  // app method
-         }
+         }else {
+            delimiters = new String[]{",","\n",delimiter};
+        }
 
         if(numbers.isEmpty()){ // if string is empty, method returns 0;
             return 0;
 
             // if string contains some separator it means, there are at least two numbers
             // ",","\n" and single delimiter are left untouched to ensure backward compatibility for previous tasks
-        }else if(numbers.contains(",")
-                ||numbers.contains("\n")
-                ||numbers.contains(delimiter)
-                ||StringUtils.indexOfAny(numbers, delimiters)!=-1) {
+        }else if(StringUtils.indexOfAny(numbers, delimiters)!=-1) {
 
             // Arrays.asList() is an array with numbers separated by ",", stream is used to
             // convert string array into integer list.
@@ -52,14 +53,11 @@ class StringCalculator {
                     .stream()
                     .map(s -> Integer.parseInt(s))
                     .collect(Collectors.toList());
-            errorList = sepNumbers.stream().filter(i -> i < 0).collect(Collectors.toList()); // negative values are stored here
 
             try {
-                if (!errorList.isEmpty()) { // if error list isn't empty, it means that there are negative numbers
-                    throw new IllegalArgumentException(); // if there are negative numbers IllegalArgumentException is thrown
-                }
-            }catch (IllegalArgumentException e){
-                System.out.println("negatives not allowed " + errorList.toString());
+                this.checkIfNegative(sepNumbers);
+            }catch (NegativeNumberException e){
+                System.out.println(e);
                 return -1;
             }
 
@@ -70,12 +68,11 @@ class StringCalculator {
             return sum;
         }else {  // if string is not empty and does not contain any separator, it means that there is only one number
             Integer retValue = Integer.valueOf(numbers);
+
             try {
-                if (retValue < 0) {
-                    throw new IllegalArgumentException();
-                }
-            }catch (IllegalArgumentException e){
-                System.out.println("negatives not allowed " + retValue);
+                this.checkIfNegative(Arrays.asList(retValue));
+            }catch (NegativeNumberException e){
+                System.out.println(e);
                 return -1;
             }
 
@@ -100,4 +97,26 @@ class StringCalculator {
         }
         return  finalString;
     }
+
+    private void checkIfNegative(List<Integer> sepNumbers) throws NegativeNumberException {
+        List<Integer> errorList;
+        errorList = sepNumbers.stream().filter(i -> i < 0).collect(Collectors.toList());
+        if (!errorList.isEmpty()) {
+            throw new NegativeNumberException(errorList);
+        }
+    }
+
+    class NegativeNumberException extends Exception {
+        List<Integer> id;
+
+        public NegativeNumberException(List<Integer> id) {
+            this.id = id;
+        }
+
+        @Override
+        public String toString() {
+            return "negatives not allowed " + id ;
+        }
+    }
+
 }
