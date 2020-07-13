@@ -28,8 +28,8 @@ class StringCalculator {
             delimiters = StringUtils
                     .substringsBetween(delimiter, "[", "]");
 
-            delimiter = this.toScan(delimiters); // toScan is called to get proper form of delimiters, explained below
-                                                 // app method
+            delimiter = this.toScan(delimiters);
+                                                 
          }else {
             delimiters = new String[]{",","\n",delimiter};
         }
@@ -55,7 +55,7 @@ class StringCalculator {
                     .stream().mapToInt(Integer::intValue).filter(i -> i <=1000)
                     .sum();
             return sum;
-        }else {  // if string is not empty and does not contain any separator, it means that there is only one number
+        }else {
             Integer retValue = Integer.valueOf(numbers);
 
             try {
@@ -65,7 +65,7 @@ class StringCalculator {
                 return -1;
             }
 
-            if(retValue > 1000) { // if value is greater than 1000 simply we can return 0
+            if(retValue > 1000) {
                 return 0;
             }
             return retValue;
